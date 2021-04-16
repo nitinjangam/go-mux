@@ -43,6 +43,7 @@ func (a *App) getProduct(w http.ResponseWriter, r *http.Request) {
 	}
 	p := product{}
 	p.ID = id
+
 	if err := p.getProduct(a.DB); err != nil {
 		switch err {
 		case sql.ErrNoRows:
