@@ -18,3 +18,5 @@ deploy:
   app: "my-new-app"
   env: "Mynewapp-env"
   bucket_name: "elasticbeanstalk-ap-south-1-055596350215"
+  on:
+    branch: main
