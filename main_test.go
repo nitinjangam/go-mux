@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/nitinjangam/go-mux/main"
+	main "github.com/nitinjangam/go-mux" //import main
 )
 
 const tableCreationQuery = `CREATE TABLE IF NOT EXISTS products
