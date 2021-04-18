@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
 	a := App{}
@@ -9,6 +12,6 @@ func main() {
 		os.Getenv("APP_DB_PASSWORD"),
 		os.Getenv("APP_DB_NAME"),
 	)
-
+	fmt.Println("Running app on port 8085")
 	a.Run(":8085")
 }
