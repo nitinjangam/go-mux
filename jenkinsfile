@@ -1,21 +1,12 @@
 pipeline {
-    agent any
-    tools {
-        go 'null'
-    }
-    environment {
-        GO114MODULE = 'on'
-        CGO_ENABLED = 0 
-        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
-    }
+    agent {docker { image 'golang' }}
     stages {        
         stage('Pre Test') {
             steps {
                 echo 'Installing dependencies'
                 sh 'go version'
-                sh 'go get -u golang.org/x/lint/golint'
-                sh 'go get -u github.com/gorilla/mux'
-                sh 'go get -u github.com/lib/pq'
+                sh 'go get -d -v'
+
             }
         }
         
