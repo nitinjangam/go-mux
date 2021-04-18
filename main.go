@@ -11,6 +11,8 @@ func main() {
 		os.Getenv("APP_DB_USERNAME"),
 		os.Getenv("APP_DB_PASSWORD"),
 		os.Getenv("APP_DB_NAME"),
+		"db",
+		"5432",
 	)
 	fmt.Println("Running app on port 8085")
 	a.Run(":8085")

@@ -17,14 +17,29 @@ type App struct {
 	DB     *sql.DB
 }
 
-func (a *App) Initialize(user, password, dbname string) {
-	connString := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
+const tableCreationQuery = `CREATE TABLE IF NOT EXISTS products
+(
+    id SERIAL,
+    name TEXT NOT NULL,
+    price NUMERIC(10,2) NOT NULL DEFAULT 0.00,
+    CONSTRAINT products_pkey PRIMARY KEY (id)
+)`
+
+func (a *App) Initialize(user, password, dbname, host, port string) {
+	// connString := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)
+	connString := fmt.Sprintf("postgres://%v:%v@%v:%v/%v?sslmode=disable",
+		user, password, host, port, dbname)
 
 	var err error
 	a.DB, err = sql.Open("postgres", connString)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if _, err := a.DB.Exec(tableCreationQuery); err != nil {
+		log.Fatal(err)
+	}
+
 	a.Router = mux.NewRouter()
 
 	a.InitializeRoutes()
