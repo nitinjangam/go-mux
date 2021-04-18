@@ -5,7 +5,8 @@ pipeline {
             steps {
                 echo 'Installing dependencies'
                 sh 'go version'
-                sh 'go get -d -v'
+                sh 'go get -u github.com/gorilla/mux'
+                sh 'go get -u github.com/lib/pq'
 
             }
         }
