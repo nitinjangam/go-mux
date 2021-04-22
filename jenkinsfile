@@ -11,9 +11,8 @@ pipeline {
     stages {        
         stage('Pre Test') {
             steps {
-                sh 'ls'
                 echo 'Installing dependencies'
-                // sh 'go version'
+                sh 'go version'
                 // sh 'go get -u github.com/gorilla/mux'
                 // sh 'go get -u github.com/lib/pq'
 
